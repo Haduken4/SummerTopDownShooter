@@ -22,10 +22,6 @@ public class PlayerShooting : MonoBehaviour
 {
     public PlayerWeapon CurrentWeapon;
 
-    public GameObject WeaponObject;
-
-    public float WeaponLerp = 0.5f;
-
     float timer = 0.0f;
 
     // Start is called before the first frame update
@@ -39,17 +35,8 @@ public class PlayerShooting : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mouseDir = mousePos - transform.position;
-        float mouseAngle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
-
-        Vector3 angle = WeaponObject.transform.eulerAngles;
-        angle.z = Mathf.LerpAngle(angle.z, mouseAngle, WeaponLerp * Time.deltaTime);
-
-        WeaponObject.transform.eulerAngles = angle;
-
         //Check for lmb down
-        if (Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0))
         {
             if(timer <= 0.0f)
             {
